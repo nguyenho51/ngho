@@ -1,2 +1,2 @@
 # ngho
-resume website
+Deploying my first resume website
