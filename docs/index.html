@@ -14,8 +14,75 @@
         <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="css/styles.css" rel="stylesheet" />
+
+        <style>
+            :root {
+                --accent: #2563eb;
+                --accent-dark: #1d4ed8;
+                --ink: #1f2937;
+                --muted: #6b7280;
+                --border: rgba(15, 23, 42, .09);
+            }
+            html { scroll-behavior: smooth; }
+            body { background: #f8fafc; color: var(--ink); }
+            #scrollProgress { position:fixed; top:0; left:0; width:0; height:4px; z-index:2000;
+                background:linear-gradient(90deg,#2563eb,#7c3aed); }
+            .hero { position:relative; overflow:hidden; padding:2rem; border-radius:1.25rem;
+                background:radial-gradient(circle at 90% 10%,rgba(37,99,235,.13),transparent 30%),
+                           radial-gradient(circle at 10% 90%,rgba(124,58,237,.10),transparent 28%); }
+            .hero h1 { font-size:clamp(3rem,7vw,5.5rem); line-height:.95; }
+            .hero-kicker { display:inline-flex; gap:.5rem; padding:.4rem .8rem; border-radius:999px;
+                background:rgba(37,99,235,.1); color:#1d4ed8; font-weight:800; font-size:.8rem;
+                letter-spacing:.06em; text-transform:uppercase; }
+            .hero-subtitle { max-width:780px; font-size:1.15rem; color:var(--muted); }
+            .hero-actions { display:flex; flex-wrap:wrap; gap:.75rem; margin:1.5rem 0 2rem; }
+            .hero-btn { display:inline-flex; align-items:center; gap:.55rem; padding:.75rem 1.1rem;
+                border-radius:.7rem; font-weight:800; text-decoration:none; transition:.2s; }
+            .hero-btn:hover { transform:translateY(-2px); text-decoration:none; }
+            .hero-btn.primary { color:#fff; background:var(--accent); box-shadow:0 8px 20px rgba(37,99,235,.22); }
+            .hero-btn.secondary { color:var(--ink); background:#fff; border:1px solid var(--border); }
+            .stats-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin-top:1.5rem; }
+            .stat-card { padding:1.1rem; border:1px solid var(--border); border-radius:1rem;
+                background:rgba(255,255,255,.85); box-shadow:0 10px 30px rgba(15,23,42,.05); }
+            .stat-card strong { display:block; font-size:1.35rem; }
+            .stat-card span { color:var(--muted); font-size:.9rem; }
+            .section-heading { display:flex; align-items:end; justify-content:space-between; gap:1rem; margin-bottom:2rem; }
+            .section-heading p { margin:0; color:var(--muted); max-width:550px; }
+            .ui-card { height:100%; padding:1.5rem; border:1px solid var(--border); border-radius:1rem;
+                background:#fff; box-shadow:0 10px 30px rgba(15,23,42,.05); transition:.2s; }
+            .ui-card:hover { transform:translateY(-5px); box-shadow:0 18px 40px rgba(15,23,42,.10); }
+            .icon-box { width:48px; height:48px; display:grid; place-items:center; border-radius:.85rem;
+                margin-bottom:1rem; background:rgba(37,99,235,.1); color:var(--accent); font-size:1.25rem; }
+            .project-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.25rem; }
+            .project-card { display:flex; flex-direction:column; min-height:290px; }
+            .project-card .project-link { margin-top:auto; padding-top:1.25rem; font-weight:800; }
+            .tech-tags,.skill-cloud { display:flex; flex-wrap:wrap; gap:.5rem; }
+            .tech-tag,.skill-pill { display:inline-flex; align-items:center; gap:.45rem; padding:.45rem .7rem;
+                border-radius:999px; background:#f1f5f9; color:#475569; font-size:.78rem; font-weight:700; }
+            .skill-pill { padding:.65rem .85rem; border:1px solid var(--border); background:#fff;
+                box-shadow:0 5px 15px rgba(15,23,42,.04); font-size:.9rem; }
+	    .contact-card {
+   		margin: 1rem 0 3rem;
+ 		padding: 2rem;
+ 		border-radius: 1.25rem;
+ 		color: #fff;
+		background-color: var(--bs-primary);
+	    }
+            .contact-card a { color:#fff; }
+            #backToTop { position:fixed; right:1.25rem; bottom:1.25rem; width:46px; height:46px;
+                display:grid; place-items:center; border:0; border-radius:50%; background:var(--accent);
+                color:#fff; box-shadow:0 10px 25px rgba(37,99,235,.3); opacity:0; pointer-events:none;
+                transition:.2s; z-index:1500; }
+            #backToTop.visible { opacity:1; pointer-events:auto; }
+            @media(max-width:991px) {
+                .stats-grid,.project-grid { grid-template-columns:1fr; }
+                .hero { padding:1rem 0; }
+            }
+        </style>
+
     </head>
     <body id="page-top">
+        <div id="scrollProgress"></div>
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
             <a class="navbar-brand js-scroll-trigger" href="#page-top">
@@ -26,44 +93,53 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#about">About</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li>
+<!--                <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#experience">Experience</a></li> -->
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#education">Education</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#projects">Projects</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#skills">Skills</a></li>
                     <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#interests">Interests</a></li>
-                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#certifications">Certifications</a></li>
                 </ul>
             </div>
         </nav>
         <!-- Page Content-->
         <div class="container-fluid p-0">
-            <!-- About-->
+            <!-- About / Hero -->
             <section class="resume-section" id="about">
                 <div class="resume-section-content">
-                    <h1 class="mb-0">
-                        Paul Nguyen
-                        <span class="text-primary">Ho</span>
-                    </h1>
-                    <div class="subheading mb-5">
-                        8806 Houston Falls Ln · Richmond, TX 77407 · (626) 679-5894 ·
-                        <a href="mailto:name@email.com">ngho@utexas.edu</a>
+                    <div class="hero">
+                        <span class="hero-kicker"><i class="fas fa-code"></i> Software Engineer · AI / ML</span>
+                        <h1 class="mb-3">Paul Nguyen <span class="text-primary">Ho</span></h1>
+                        <div class="subheading mb-4">
+                            Houston, TX · <a href="mailto:paul.nguyen.ho@gmail.com">paul.nguyen.ho@gmail.com</a>
+                        </div>
+                        <p class="hero-subtitle mb-3">
+                            Software development engineer with a background in Chemical Engineering and an M.S. in
+                            Computer Science from UT Austin. I enjoy building high-performance software and exploring
+                            AI, machine learning, and parallel systems.
+                        </p>
+                        <div class="hero-actions">
+                            <a class="hero-btn primary" href="#projects"><i class="fas fa-rocket"></i> View My Projects</a>
+                            <a class="hero-btn secondary" href="mailto:paul.nguyen.ho@gmail.com"><i class="fas fa-envelope"></i> Contact Me</a>
+                            <a class="hero-btn secondary" href="https://github.com/nguyenho51" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-card"><strong>M.S.</strong><span>Computer Science · UT Austin</span></div>
+                            <div class="stat-card"><strong>AI / ML</strong><span>Deep Learning & Machine Learning</span></div>
+                            <div class="stat-card"><strong>C++ / Python</strong><span>Software & AI development</span></div>
+                        </div>
                     </div>
-                    <p class="lead mb-5">I am currently a master student at the University of Texas Austin majoring in Computer Science specializing in AI and Machine Learning. Given four years of working experience in the biopharmaceutical industry, I hope to provide high-quality work ethics and indepth knowledge to your organization upon completion of my master program study. </p>
-                    <div class="social-icons">
-                        <a class="social-icon" href="https://www.linkedin.com/in/paul-ho-0105/" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-                        <a class="social-icon" href="https://github.com/nguyenho51" target="_blank"><i class="fab fa-github"></i></a>
-                        <!-- Placeholder for future social media outlets implementation
-                        <a class="social-icon" href="#!"><i class="fab fa-twitter"></i></a>
-                        <a class="social-icon" href="#!"><i class="fab fa-facebook-f"></i></a>
-                        -->        
+                    <div class="social-icons mt-4">
+                        <a class="social-icon" href="https://www.linkedin.com/in/paul-ho-0105/" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a class="social-icon" href="https://github.com/nguyenho51" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
                     </div>
                 </div>
             </section>
             <hr class="m-0" />
-            <!-- Experience-->
-            <section class="resume-section" id="experience">
+            
+            <!-- Experience -->
+<!--            <section class="resume-section" id="experience">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Experience</h2>
-                    <!-- Experience 1-->
+                    <h2 class="mb-5">Experience</h2>    
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Cell Therapy Specialist</h3>
@@ -72,7 +148,7 @@
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">September 2021 - Present</span></div>
                     </div>
-                    <!-- Experience 2-->
+                    
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Scientist I</h3>
@@ -81,7 +157,7 @@
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">March 2020 - August 2021</span></div>
                     </div>
-                    <!-- Experience 3-->
+                    
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">Research Associate</h3>
@@ -90,10 +166,37 @@
                         </div>
                         <div class="flex-shrink-0"><span class="text-primary">March 2019 - December 2019</span></div>
                     </div>
-
+                </div>
+            </section>  ---hide experience-->
+            
+            
+            <!-- What I Build -->
+            <section class="resume-section" id="what-i-build">
+                <div class="resume-section-content">
+                    <div class="section-heading">
+                        <div><h2 class="mb-2">What I Build</h2><p>Where my software engineering and AI/ML interests come together.</p></div>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-4"><div class="ui-card">
+                            <div class="icon-box"><i class="fas fa-microchip"></i></div>
+                            <h3 class="h4">High-Performance Software</h3>
+                            <p class="mb-0">C/C++, debugging, systems programming, and performance-oriented development.</p>
+                        </div></div>
+                        <div class="col-md-4"><div class="ui-card">
+                            <div class="icon-box"><i class="fas fa-brain"></i></div>
+                            <h3 class="h4">AI & Machine Learning</h3>
+                            <p class="mb-0">Machine learning, deep learning, retrieval systems, and practical AI applications.</p>
+                        </div></div>
+                        <div class="col-md-4"><div class="ui-card">
+                            <div class="icon-box"><i class="fas fa-layer-group"></i></div>
+                            <h3 class="h4">End-to-End Apps</h3>
+                            <p class="mb-0">APIs, data storage, user-facing applications, and cloud-connected services.</p>
+                        </div></div>
+                    </div>
                 </div>
             </section>
             <hr class="m-0" />
+
             <!-- Education-->
             <section class="resume-section" id="education">
                 <div class="resume-section-content">
@@ -101,10 +204,10 @@
                     <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
                         <div class="flex-grow-1">
                             <h3 class="mb-0">University of Texas Austin</h3>
-                            <div class="subheading mb-3">Master of Science Candidate</div>
+                            <div class="subheading mb-3">Master of Science</div>
                             <div>Computer Science - AI and ML Specialization</div>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">August 2022 - Present</span></div>
+                        <div class="flex-shrink-0"><span class="text-primary">May 2024</span></div>
                     </div>
                     <div class="d-flex flex-column flex-md-row justify-content-between">
                         <div class="flex-grow-1">
@@ -112,110 +215,134 @@
                             <div class="subheading mb-3">Bachelor of Science</div>
                             <div>Chemical Engineering</div>
                         </div>
-                        <div class="flex-shrink-0"><span class="text-primary">September 2015 - June 2018</span></div>
+                        <div class="flex-shrink-0"><span class="text-primary">June 2018</span></div>
+                    </div>
+                </div>
+            </section>
+            
+            <hr class="m-0" />
+        
+            <!-- Projects -->
+            <section class="resume-section" id="projects">
+                <div class="resume-section-content">
+                    <div class="section-heading">
+                        <div><h2 class="mb-2">Projects</h2><p>A selection of software projects spanning mobile development and systems programming.</p></div>
+                    </div>
+                    <div class="project-grid">
+                        <article class="ui-card project-card">
+                            <div class="icon-box"><i class="fas fa-chart-line"></i></div>
+                            <h3 class="h4">Stock News App</h3>
+                            <p>A scalable mobile app for personalized stock watch lists and financial news updates, using Kotlin and Firebase Firestore.</p>
+                            <div class="tech-tags"><span class="tech-tag">Kotlin</span><span class="tech-tag">Android</span><span class="tech-tag">Firebase</span><span class="tech-tag">REST APIs</span></div>
+                            <a class="project-link" href="https://gitfront.io/r/paul-ho/idxk4SpQyqgF/stock-news-app" target="_blank" rel="noopener">View project <i class="fas fa-arrow-right"></i></a>
+                        </article>
+                        <article class="ui-card project-card">
+                            <div class="icon-box"><i class="fab fa-reddit-alien"></i></div>
+                            <h3 class="h4">Mini Reddit</h3>
+                            <p>A Reddit-inspired Android application supporting refreshing, subreddit switching, and favorite feeds.</p>
+                            <div class="tech-tags"><span class="tech-tag">Kotlin</span><span class="tech-tag">Android</span><span class="tech-tag">Reddit API</span></div>
+                            <a class="project-link" href="https://gitfront.io/r/paul-ho/auaDU7cMHcvG/mini-reddit" target="_blank" rel="noopener">View project <i class="fas fa-arrow-right"></i></a>
+                        </article>
+                        <article class="ui-card project-card">
+                            <div class="icon-box"><i class="fas fa-terminal"></i></div>
+                            <h3 class="h4">Custom Unix Shell</h3>
+                            <p>A C-based command-line shell that creates child processes to execute user-entered commands.</p>
+                            <div class="tech-tags"><span class="tech-tag">C</span><span class="tech-tag">Linux</span><span class="tech-tag">Processes</span><span class="tech-tag">CLI</span></div>
+                            <a class="project-link" href="https://gitfront.io/r/paul-ho/kKvZcC3zLCcp/custom-unix-shell" target="_blank" rel="noopener">View project <i class="fas fa-arrow-right"></i></a>
+                        </article>
                     </div>
                 </div>
             </section>
             <hr class="m-0" />
-            <!-- Skills-->
+            
+            <!-- Skills -->
             <section class="resume-section" id="skills">
                 <div class="resume-section-content">
-                    <h2 class="mb-5">Skills</h2>
-                    <div class="subheading mb-3">Programming Languages & Tools</div>
-                    <ul class="list-inline dev-icons">
-                        <li class="list-inline-item"><i class="fab fa-html5"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-css3-alt"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-js-square"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-node-js"></i></li>
-                        <li class="list-inline-item"><i class="fab fa-npm"></i></li>
-                    </ul>
-                    <div class="subheading mb-3">Skills</div>
-                    <ul class="fa-ul mb-0">
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Object-oriented Programming
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Data Structures and Algorithms
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Critical and Analytical Thinking
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-check"></i></span>
-                            Agile Development & Scrum
-                        </li>
-                    </ul>
+                    <div class="section-heading">
+                        <div><h2 class="mb-2">Skills</h2><p>Technologies and capabilities I use to build software and AI/ML applications.</p></div>
+                    </div>
+                    <div class="skill-cloud mb-5">
+                        <span class="skill-pill"><i class="fab fa-python"></i> Python</span>
+                        <span class="skill-pill"><i class="fas fa-code"></i> C / C++</span>
+                        <span class="skill-pill"><i class="fab fa-java"></i> Java</span>
+                        <span class="skill-pill"><i class="fab fa-android"></i> Android</span>
+                        <span class="skill-pill"><i class="fab fa-git-alt"></i> Git</span>
+                        <span class="skill-pill"><i class="fab fa-html5"></i> HTML</span>
+                        <span class="skill-pill"><i class="fab fa-css3-alt"></i> CSS</span>
+                        <span class="skill-pill"><i class="fas fa-brain"></i> Machine Learning</span>
+                        <span class="skill-pill"><i class="fas fa-network-wired"></i> Deep Learning</span>
+                        <span class="skill-pill"><i class="fas fa-project-diagram"></i> Data Structures</span>
+                        <span class="skill-pill"><i class="fas fa-bug"></i> Debugging</span>
+                    </div>
+                    <div class="row g-4">
+                        <div class="col-md-6"><div class="ui-card">
+                            <h3 class="h4">Core Strengths</h3>
+                            <ul class="fa-ul mb-0 mt-3">
+                                <li class="mb-2"><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Object-oriented programming</li>
+                                <li class="mb-2"><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Data structures and algorithms</li>
+                                <li class="mb-2"><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Machine learning algorithms</li>
+                                <li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Critical and analytical thinking</li>
+                            </ul>
+                        </div></div>
+                        <div class="col-md-6"><div class="ui-card">
+                            <h3 class="h4">Development</h3>
+                            <ul class="fa-ul mb-0 mt-3">
+                                <li class="mb-2"><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Android development with Android Studio</li>
+                                <li class="mb-2"><span class="fa-li"><i class="fas fa-check text-primary"></i></span>API-driven application development</li>
+                                <li><span class="fa-li"><i class="fas fa-check text-primary"></i></span>Debugging and problem solving</li>
+                            </ul>
+                        </div></div>
+                    </div>
                 </div>
             </section>
             <hr class="m-0" />
+            
             <!-- Interests-->
             <section class="resume-section" id="interests">
                 <div class="resume-section-content">
                     <h2 class="mb-5">Interests</h2>
-                    <p>Apart from being a cell therapy specialist, my growing interest in computer programming has led me to explore the field of computer science, especially machine learning and artificial intelligence. I decided to take a leap of faith and enrolled to the Computer Science M.S. program at UT Austin in order to strengthen my knowledge of the fastest growing field in computer science.</p>
-                    <p class="mb-0">When I go outdoors, my two favorite things to do is playing billiard pool with friends and practicing my shooting skill at the local shooting range.</p>
+                    <p>Apart from working as a software development engineer with Windows SDK and C++ in my daily job, I have a growing interest in the field of AI and machine learning. Having earned an M.S. in Computer Science from UT Austin, where my studies focused on AI and machine learning, I am eager to apply my knowledge in this promising field someday.</p>
+                    <p class="mb-0">When I go outdoors, my two favorite activities are going on road trips and visiting new places. Although having a full-time job takes up most of my time, I still try my best to reward myself with one or two trips each year.</p>
                 </div>
             </section>
+            
             <hr class="m-0" />
-            <!-- Awards-->
-            <section class="resume-section" id="certifications">
-                <div class="resume-section-content">
-                    <h2 class="mb-5">Certifications</h2>
-                    <ul class="fa-ul mb-0">
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            Python Bootcamp - Udemy Certification
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            Object-oriented programming with JAVA - Gatech Certification
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            Data structures and Algorithms in JAVA - Gatech Certification
-                        </li>
-                        <!--
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            1
-                            <sup>st</sup>
-                            Place - University of Colorado Boulder - Emerging Tech Competition 2009
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            1
-                            <sup>st</sup>
-                            Place - University of Colorado Boulder - Adobe Creative Jam 2008 (UI Design Category)
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            2
-                            <sup>nd</sup>
-                            Place - University of Colorado Boulder - Emerging Tech Competition 2008
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            1
-                            <sup>st</sup>
-                            Place - James Buchanan High School - Hackathon 2006
-                        </li>
-                        <li>
-                            <span class="fa-li"><i class="fas fa-trophy text-warning"></i></span>
-                            3
-                            <sup>rd</sup>
-                            Place - James Buchanan High School - Hackathon 2005
-                        </li>
-                        -->
-                    </ul>
-                </div>
-            </section>
+                      
         </div>
         <!-- Bootstrap core JS-->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+
+	<section class="container-fluid px-4 px-lg-5">
+    	    <div class="contact-card bg-primary">
+      	        <div class="row align-items-center g-4">
+     	           <div class="col-lg-8">
+                       <h2 class="mb-2">Let's build something interesting.</h2>
+               	       <p class="mb-0">
+                           Interested in software engineering, AI/ML, or high-performance development?
+                           I'd be happy to connect.
+               	       </p>
+            	   </div>
+            	   <div class="col-lg-4 text-lg-end">
+                       <a class="hero-btn secondary" href="mailto:paul.nguyen.ho@gmail.com">
+                           <i class="fas fa-paper-plane"></i> Get in Touch
+               	       </a>
+           	   </div>
+       	 	</div>
+   	    </div>
+	</section>
+
+        <button id="backToTop" aria-label="Back to top" title="Back to top"><i class="fas fa-arrow-up"></i></button>
+        <script>
+            const progress = document.getElementById("scrollProgress");
+            const backToTop = document.getElementById("backToTop");
+            window.addEventListener("scroll", () => {
+                const height = document.documentElement.scrollHeight - window.innerHeight;
+                progress.style.width = height > 0 ? `${(window.scrollY / height) * 100}%` : "0%";
+                backToTop.classList.toggle("visible", window.scrollY > 500);
+            });
+            backToTop.addEventListener("click", () => window.scrollTo({top:0, behavior:"smooth"}));
+        </script>
     </body>
 </html>
